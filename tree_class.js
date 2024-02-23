@@ -1,7 +1,7 @@
 import { Node } from "./node_class.js";
 
 class Tree{
-    constructor(tree_array = []){
+    constructor(tree_array){
         this.tree_array = tree_array;
         this.root = this.buildTree();
 
@@ -21,7 +21,6 @@ class Tree{
         this.tree_array.sort(function(number1, number2) {
             return number1 - number2;
         });
-        //console.log(this.tree_array);
     }
 
     sortedArrayToBST(start, end) {
@@ -32,35 +31,82 @@ class Tree{
         const node = new Node(this.tree_array[middle]);
         node.left_child = this.sortedArrayToBST(start, middle - 1);
         node.right_child = this.sortedArrayToBST(middle + 1, end);
+        
         return node;
       }
 
-    buildTree(start, end){
+
+    buildTree(){
         this.sortAndRemoveDuplicates();
-        const node = this.sortedArrayToBST(0, this.tree_array.length -1);
-        const prettyPrint = (node, prefix = "", isLeft = true) => {
-          if (node === null) {
-            return;
-          }
-          if (node.right_child !== null) {
-            prettyPrint(node.right_child, `${prefix}${isLeft ? "│   " : "    "}`, false);
-          }
-          console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-          if (node.left_child !== null) {
-            prettyPrint(node.left_child, `${prefix}${isLeft ? "    " : "│   "}`, true);
-          }
-        };
-        return node;
+        const initial_node = this.sortedArrayToBST(0, this.tree_array.length -1);
+        return initial_node;
     }
+
+    prettyPrint (node = this.buildTree(), prefix = "", isLeft = true){
+      if (node === null) {
+        
+        return;
+      }
+      if (node.right_child !== null) {
+        this.prettyPrint(node.right_child, `${prefix}${isLeft ? "│   " : "    "}`, false);
+      }
+      console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
+      if (node.left_child !== null) {
+        this.prettyPrint(node.left_child, `${prefix}${isLeft ? "    " : "│   "}`, true);
+      }
+
+    };
+
+  
+
+    insert(value){
+      if (isNaN(value)){
+        console.log(`ERROR: ${value} is not a number`);
+        return;
+      }else{
+        const new_insert = parseInt(value);
+        this.tree_array.push(new_insert);
+      } 
+    }
+
+    delete(value){
+      let counter = 0
+      for (const node of this.tree_array){       
+        if(value == node){        
+          const value_index = this.tree_array.indexOf(value);
+          this.tree_array.splice(value_index, 1);
+          counter ++;            
+        }
+      }
+
+      if (counter == 0){
+        console.log(`ERROR: ${value} does not exist in this tree`);
+      }      
+
+    }
+
 
     
 
 
 }
 
-let binary_tree = new Tree([2,4,4,9,1,2,3,3,3,4,5,6]);
+let binary_tree = new Tree([2,4,4,9,1,2,3,3,3,4,5,6, 22, 12]);
 
-console.log(binary_tree.buildTree());
+binary_tree.insert(30);
+binary_tree.insert(31);
+binary_tree.insert(51);
+binary_tree.insert(61);
+binary_tree.delete(61);
+binary_tree.delete(100);
+
+//console.log(binary_tree);
+
+//console.log(binary_tree.buildTree());
+binary_tree.prettyPrint();
+//console.log(binary_tree.exists(22));
+
+
 
 
 export{
