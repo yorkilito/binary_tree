@@ -85,6 +85,23 @@ class Tree{
 
     }
 
+    find(value){
+      let counter = 0
+      for (const node of this.tree_array){       
+        if(value == node){  
+          this.sortAndRemoveDuplicates();
+          const value_index = this.tree_array.indexOf(value);
+          const value_node = this.sortedArrayToBST(value_index - 1, value_index + 1);  
+          return value_node;              
+        }
+      }
+
+      if (counter == 0){
+        console.log(`ERROR: ${value} does not exist in this tree.`);
+      }   
+
+    }
+
 
     
 
@@ -106,6 +123,7 @@ binary_tree.delete(100);
 binary_tree.prettyPrint();
 //console.log(binary_tree.exists(22));
 
+console.log(binary_tree.find(51));
 
 
 
