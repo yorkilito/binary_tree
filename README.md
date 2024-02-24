@@ -15,7 +15,7 @@ The aim of this project is to build a balanced BST (binary search tree). Through
 # Executing Program:
 - You can run this program in a Linux or Mac terminal by running the command
 
-node index.js
+`node index.js`
 
 # Authors:
 Samuel Yorke Aidoo Jr. (@yorkilito)
