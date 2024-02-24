@@ -4,6 +4,9 @@ class Tree{
     constructor(tree_array){
         this.tree_array = tree_array;
         this.root = this.buildTree();
+        this.pre_order_array = [];
+        this.in_order_array = [];
+        this.post_order_array = [];
 
     }
 
@@ -124,6 +127,42 @@ class Tree{
 
     }
 
+    inOrder(node = this.buildTree()){
+      if(node === null){
+        return;
+      }     
+      this.inOrder(node.left_child);
+      this.in_order_array.push(node.value);
+      this.inOrder(node.right_child);
+
+      return (this.in_order_array);
+
+    }
+
+    preOrder(node = this.buildTree()){
+      if(node === null){
+        return;
+      }
+
+      this.pre_order_array.push(node.value);
+      this.preOrder(node.left_child);
+      this.preOrder(node.right_child);
+
+      return (this.pre_order_array);
+    }
+
+    postOrder(node = this.buildTree()){
+      if(node === null){
+        return;
+      }     
+      this.postOrder(node.left_child);
+      this.post_order_array.push(node.value);
+      this.postOrder(node.right_child);
+
+      return (this.postOrder_order_array);
+
+    }
+
 
     
 
@@ -144,7 +183,7 @@ binary_tree.delete(61);
 binary_tree.prettyPrint();
 //console.log(binary_tree.exists(22));
 
-binary_tree.levelOrder();
+console.log(binary_tree.preOrder());
 
 
 
