@@ -102,6 +102,28 @@ class Tree{
 
     }
 
+    levelOrder(node = this.buildTree()){
+      let queue = [];
+      let level_order = [];
+      if (node === null){
+        return;
+      }
+      queue.push(node);
+
+      while(!(queue.length === 0)){
+        let current_node  = queue.shift();
+        level_order.push(current_node.value);
+        if (current_node.left_child !== null){
+          queue.push(current_node.left_child);
+        }
+        if (current_node.right_child !== null){
+          queue.push(current_node.right_child);
+        }
+      }
+      return level_order;
+
+    }
+
 
     
 
@@ -115,7 +137,6 @@ binary_tree.insert(31);
 binary_tree.insert(51);
 binary_tree.insert(61);
 binary_tree.delete(61);
-binary_tree.delete(100);
 
 //console.log(binary_tree);
 
@@ -123,7 +144,7 @@ binary_tree.delete(100);
 binary_tree.prettyPrint();
 //console.log(binary_tree.exists(22));
 
-console.log(binary_tree.find(51));
+binary_tree.levelOrder();
 
 
 
