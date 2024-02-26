@@ -1,12 +1,13 @@
 import { Node } from "./node_class.js";
 
 class Tree{
-    constructor(tree_array){
+    constructor(tree_array = []){
         this.tree_array = tree_array;
         this.root = this.buildTree();
         this.pre_order_array = [];
         this.in_order_array = [];
         this.post_order_array = [];
+        this.tree_depth = 0;
 
     }
 
@@ -156,35 +157,37 @@ class Tree{
         return;
       }     
       this.postOrder(node.left_child);
-      this.post_order_array.push(node.value);
       this.postOrder(node.right_child);
+      this.post_order_array.push(node.value);
 
-      return (this.postOrder_order_array);
+      return (this.post_order_array);
 
     }
 
+    height(node = this.buildTree()){
+      if (node === null){
+        return 0;
+      }
 
-    
+      let left_node = this.height(node.left_child);
+      let right_node = this.height(node.right_child);
 
+      return 1 + Math.max(left_node, right_node);
+    }
+
+    isBalanced(node = this.buildTree()){
+      if (node === null){
+        return null;
+      }
+
+      let left_node_height = this.height(node.left_child);
+      let right_node_height = this.height(node.right_child);
+
+      return left_node_height === right_node_height ? true : false;
+
+    }    
 
 }
-
-let binary_tree = new Tree([2,4,4,9,1,2,3,3,3,4,5,6, 22, 12]);
-
-binary_tree.insert(30);
-binary_tree.insert(31);
-binary_tree.insert(51);
-binary_tree.insert(61);
-binary_tree.delete(61);
-
-//console.log(binary_tree);
-
-//console.log(binary_tree.buildTree());
-binary_tree.prettyPrint();
-//console.log(binary_tree.exists(22));
-
-console.log(binary_tree.preOrder());
-
 
 
 export{

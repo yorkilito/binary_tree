@@ -18,9 +18,9 @@ The aim of this project is to build a balanced BST (binary search tree). Through
 `node index.js`
 
 # Authors:
-Samuel Yorke Aidoo Jr. (@yorkilito)
-https://github.com/yorkilito
-sya.aidoo@gmail.com
+Name: Samuel Yorke Aidoo Jr. (@yorkilito)
+GitHub: https://github.com/yorkilito
+Email Address: sya.aidoo@gmail.com
 
 # Version History:
 0.1
