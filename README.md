@@ -8,6 +8,7 @@ The aim of this project is to build a balanced BST (binary search tree). Through
 
 # Getting Started:
 - Node
+- `npm install prompt-sync`
 
 # Installing:
 - This project can be downloaded on GitHub using this link: (https://github.com/yorkilito/binary_tree)
