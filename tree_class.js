@@ -59,7 +59,7 @@ class Tree{
         this.prettyPrint(node.left_child, `${prefix}${isLeft ? "    " : "│   "}`, true);
       }
 
-      return "Balanced Binary Tree";
+      return null;
 
     };
 

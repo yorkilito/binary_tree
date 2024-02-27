@@ -23,6 +23,23 @@ class Driver{
 
     }
 
+    generateRangeNumbers(floor, ceiling){
+        if(floor > ceiling){
+            console.log("ERROR: The range is not valid");
+            return;
+        }else{
+            this.number_array = [];
+        }
+
+        for(let index = floor; index <= ceiling ;index++){
+            
+            this.number_array.push(index);
+        }
+
+        return this.number_array;
+
+    }
+
     buildTree(){
         this.tree = new Tree(this.number_array);
 
@@ -32,13 +49,14 @@ class Driver{
 
     generateTreeInfo(){
 
-        const info = ` 
-Here's all related info on this binary tree:\n This tree has ${this.number_array.length} element(s)\n
-The height of this tree is ${this.tree.height()}\n
-If this tree is traversed with breadth first search, this will be the order: ${this.tree.levelOrder()}\n
-If this tree is traversed in PreOrder, this will be the order: ${this.tree.preOrder()}\n
-If this tree is traversed in InOrder, this will be the order: ${this.tree.inOrder()}\n
-If this tree is traversed in PostOrder, this will be the order: ${this.tree.postOrder()}\n
+        const info =  `
+Here's all related info on this binary tree:\n
+This tree has ${this.number_array.length} element(s).\n
+The height of this tree is ${this.tree.height()}.\n
+If this tree is traversed with breadth first search(BFS), the order of traversal will be: ${this.tree.levelOrder()}.\n
+If this tree is traversed in PreOrder, the order of traversal will be: ${this.tree.preOrder()}.\n
+If this tree is traversed in InOrder, the order of traversal will be: ${this.tree.inOrder()}.\n
+If this tree is traversed in PostOrder, the order of traversal will be: ${this.tree.postOrder()}.\n
 Is this tree balanced? ${this.tree.isBalanced()}`;
 
         return info;
@@ -46,15 +64,6 @@ Is this tree balanced? ${this.tree.isBalanced()}`;
     }
 
 }
-
-const new_driver = new Driver();
-new_driver.generateRandomNumbers(50)
-
-console.log(new_driver.buildTree().prettyPrint());
-console.log(new_driver.generateTreeInfo());
-
-
-
 
 
 export {
